@@ -32,8 +32,8 @@ class ActionC(pt.behaviour.Behaviour):
 
 
 # Define the behavior tree
-root = pt.composites.Sequence("Root", False)
-#root = pt.composites.Selector("Root",False)
+root = pt.composites.Sequence("Root")
+#root = pt.composites.Selector("Root")
 #root = pt.composites.Parallel("Root", policy=pt.common.ParallelPolicy.SUCCESS_ON_ALL)
 
 task_a = ActionA("Task A")
