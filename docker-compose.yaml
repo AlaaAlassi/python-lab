@@ -1,0 +1,14 @@
+version: "3"
+services:
+    python-playground:
+        image: python:3.9-pytrees
+        container_name: python
+        network_mode: host
+        build:
+            context: .
+            dockerfile: testing-environment.Dockerfile
+        volumes:
+        - /tmp/.X11-unix:/tmp/.X11-unix:rw
+        - ./:/home/python-playground/
+        - /run/user/1000/gdm/Xauthority:/root/.Xauthority:rw
+        command: tail -F anything
