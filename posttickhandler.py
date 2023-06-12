@@ -10,7 +10,7 @@ class ActionA(pt.behaviour.Behaviour):
     def update(self):
         # Perform action A
         print("Performing Action A")
-        return pt.common.Status.SUCCESS
+        return pt.common.Status.FAILURE
 
 
 class ActionB(pt.behaviour.Behaviour):
@@ -34,7 +34,9 @@ class ActionC(pt.behaviour.Behaviour):
 
 
 # Define the behavior tree
-root = pt.composites.Sequence("Root")
+#root = pt.composites.Sequence("Root")
+root = pt.composites.Parallel("Root", policy=pt.common.ParallelPolicy.SUCCESS_ON_ONE)
+
 
 task_a = ActionA("Task A")
 task_b = ActionB("Task B")
@@ -49,8 +51,7 @@ tree = pt.trees.BehaviourTree(root)
 
 # Define the post-tick handler
 def post_tick_handler(snapshot_visitor, behaviour_tree):
-    print(pt.display.ascii_tree(behaviour_tree.root,
-                          snapshot_information=snapshot_visitor))
+    pt.display.print_ascii_tree(behaviour_tree.root, show_status=True)
 
 # Add the post-tick handler to the behavior tree
 snapshot_visitor = pt.visitors.SnapshotVisitor()
