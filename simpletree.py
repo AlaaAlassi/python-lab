@@ -18,7 +18,7 @@ class ActionB(pt.behaviour.Behaviour):
     def update(self):
         # Perform action B
         print("Performing Action B")
-        return pt.common.Status.SUCCESS
+        return pt.common.Status.FAILURE
 
 
 class ActionC(pt.behaviour.Behaviour):
@@ -33,6 +33,8 @@ class ActionC(pt.behaviour.Behaviour):
 
 # Define the behavior tree
 root = pt.composites.Sequence("Root", False)
+#root = pt.composites.Selector("Root",False)
+#root = pt.composites.Parallel("Root", policy=pt.common.ParallelPolicy.SUCCESS_ON_ALL)
 
 task_a = ActionA("Task A")
 task_b = ActionB("Task B")
