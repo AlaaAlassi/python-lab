@@ -1,0 +1,17 @@
+# tasks.yaml
+
+root:
+  - task_group1:
+      - name: Task1
+        params:
+          parameter: [0, 0]
+          flag: true
+      - name: Task2
+        params:
+          parameter: ["item1", "item2", "item3"]
+          flag: false
+  - task_group2:
+      - name: Task3
+        params:
+          parameter: [true, false, true, false]
+          flag: true
